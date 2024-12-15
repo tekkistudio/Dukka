@@ -1,31 +1,31 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
+import { useState } from 'react'
 import { supabase } from '@/lib/supabaseClient'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
-function SetPasswordForm() {
+export default function SetPassword() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-  const searchParams = useSearchParams()
 
-  useEffect(() => {
-    // Récupérer et vérifier le token
-    const token = searchParams.get('token')
-    if (!token) {
-      setError('Token manquant. Veuillez utiliser le lien envoyé par email.')
+  // Récupérer le token depuis l'URL côté client uniquement
+  const getToken = () => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      return params.get('token')
     }
-  }, [searchParams])
+    return null
+  }
 
   const handleSetPassword = async (e) => {
     e.preventDefault()
     setLoading(true)
     setError('')
 
-    const token = searchParams.get('token')
+    const token = getToken()
     
     if (!token) {
       setError('Token manquant. Veuillez utiliser le lien envoyé par email.')
@@ -47,13 +47,13 @@ function SetPasswordForm() {
 
     try {
       // Utiliser le token pour définir le mot de passe
-      const { error } = await supabase.auth.verifyOtp({
+      const { error: supabaseError } = await supabase.auth.verifyOtp({
         token_hash: token,
         type: 'invite',
         password: password,
       })
 
-      if (error) throw error
+      if (supabaseError) throw supabaseError
 
       // Rediriger vers la page de connexion après succès
       router.push('/admin/login?success=true')
@@ -127,23 +127,5 @@ function SetPasswordForm() {
         </form>
       </div>
     </div>
-  )
-}
-
-// Loading component
-function LoadingState() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="animate-pulse text-gray-600">Chargement...</div>
-    </div>
-  )
-}
-
-// Main component
-export default function SetPassword() {
-  return (
-    <Suspense fallback={<LoadingState />}>
-      <SetPasswordForm />
-    </Suspense>
   )
 }
