@@ -42,18 +42,18 @@ export function HeroSection() {
                 <p className="mt-1 text-base leading-7 text-gray-600">de temps gagné</p>
               </div>
               <div>
-                <p className="text-3xl font-bold tracking-tight text-dukka-primary">0 FCFA</p>
-                <p className="mt-1 text-base leading-7 text-gray-600">pour démarrer</p>
+                <p className="text-3xl font-bold tracking-tight text-dukka-primary">75%</p>
+                <p className="mt-1 text-base leading-7 text-gray-600">de clients en plus</p>
               </div>
             </div>
           </div>
 
           {/* Image */}
-          <div className="mt-8 sm:mt-12 lg:mt-0 flex justify-center lg:justify-end w-full lg:w-auto">
-            <div className="relative w-[240px] h-[480px] sm:w-[280px] sm:h-[560px] lg:w-[320px] lg:h-[640px]">
+          <div className="mt-8 sm:mt-12 lg:mt-0 flex justify-center lg:justify-end w-full lg:w-1/2">
+            <div className="relative w-[320px] h-[540px] sm:w-[360px] sm:h-[540px] lg:w-[480px] lg:h-[720px]">
               <Image
-                src="/images/hero/mockup-tablet.png"
-                alt="Interface mobile Dukka"
+                src="/images/hero/mockup-dukka.png"
+                alt="Interface Dukka"
                 fill
                 className="object-contain"
                 priority

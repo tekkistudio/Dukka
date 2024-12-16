@@ -181,7 +181,8 @@ export function ContactChat() {
       }));
       await addMessage(`Le fichier '${file.name}' a bien été ajouté.`, false);
     } catch (error) {
-      await addBotResponse([error.message || "Une erreur est survenue lors de l'upload du fichier."]);
+      console.error('Erreur upload:', error); 
+      await addBotResponse(["Une erreur est survenue lors de l'upload du fichier. Veuillez réessayer."]);
     } finally {
       setUploadingFile(false);
     }
@@ -302,24 +303,22 @@ export function ContactChat() {
               message: text,
               status: 'new' 
             };
-            console.log('FormData avant sauvegarde:', updatedFormData);
-            
+    
             await saveContactMessage(updatedFormData);
-            
+    
             await addBotResponse([
               "✅ Votre message a été envoyé avec succès !",
               "Notre équipe vous répondra dans les plus brefs délais.",
               "Souhaitez-vous autre chose ?"
             ], ["Je veux rejoindre la liste d'attente", "Non, merci !"]);
-            
+    
             setIsCollectingInfo(false);
             setInfoStep('');
           } catch (error) {
-            console.error('Erreur détaillée:', error);
+            console.error('Erreur détaillée:', error); // Pour le debug uniquement
             await addBotResponse([
-              "❌ Désolé, une erreur est survenue lors de l'envoi du message.",
-              `Erreur: ${error.message}`, 
-              "Pouvez-vous réessayer plus tard ?"
+              "Désolé, une erreur est survenue lors de l'envoi du message.",
+              "Veuillez réessayer plus tard."
             ]);
           }
           break;

@@ -98,22 +98,20 @@ export default function FeaturesPage() {
                 </ul>
               </div>
               <div className="w-full lg:w-1/2">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
-                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-                    <Image
-                      src={`/images/features/${index === 0 ? 'chat-demo.png' : index === 1 ? 'payment-demo.png' : 'interface-demo.png'}`}
-                      alt={feature.imageAlt}
-                      width={800}
-                      height={600}
-                      quality={90}
-                      priority={index === 0}
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="relative">
+          <Image
+            src={`/images/features/${index === 0 ? 'chat-demo.svg' : index === 1 ? 'payment-demo.png' : 'interface-demo.svg'}`}
+            alt={feature.imageAlt}
+            width={800}
+            height={600}
+            quality={90}
+            priority={index === 0}
+            className="w-full h-auto"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+        />
+        </div>
+      </div>
+    </div>
           ))}
         </div>
       </section>

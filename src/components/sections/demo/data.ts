@@ -351,7 +351,7 @@ export const shopModeFlow = {
       "Ajouter le sac",
       "Ajouter l'écharpe",
       "Ajouter le bandeau",
-      "Non, merci"
+      "Continuer sans accessoire"
     ]
   }]
 };
@@ -374,7 +374,7 @@ export const restaurantFlow = {
       "Ajouter Bissap",
       "Ajouter Gingembre",
       "Ajouter Cocktail detox",
-      "Non, merci"
+      "Continuer sans boisson"
     ]
   }]
 };

@@ -115,9 +115,13 @@ export function Navbar() {
       />
 
       <div 
-        className={`fixed right-0 top-0 bottom-0 w-full max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-out z-[120] ${
-          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed right-0 top-0 bottom-0 w-full max-w-sm bg-white transition-transform duration-300 ease-out z-[120]`}
+        style={{
+          transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(100vw)',
+          position: mobileMenuOpen ? 'fixed' : 'absolute',
+          visibility: mobileMenuOpen ? 'visible' : 'hidden',
+          boxShadow: mobileMenuOpen ? '0 25px 50px -12px rgb(0 0 0 / 0.25)' : 'none'
+        }}
       >
         <div className="flex items-center justify-between px-6 py-4 border-b">
           <a href="/" className="-m-1.5 p-1.5">

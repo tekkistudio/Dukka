@@ -31,7 +31,7 @@ const plans = [
     limitations: [
       'Analytics avancés non inclus',
       'Personnalisation limitée du chatbot',
-      'Support standard uniquement'
+      'Pas d\'assistant IA intégré'
     ],
     cta: {
       text: 'Rejoindre la liste d\'attente',
