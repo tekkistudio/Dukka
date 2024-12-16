@@ -1,10 +1,8 @@
-// app/layout.tsx
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { ClientProvider } from '@/components/providers/ClientProvider'
 import { WaitlistProvider } from '@/contexts/WaitlistContext'
-import { Navbar } from '@/components/layout/Navbar'
 import Footer from '@/components/sections/footer/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -19,16 +17,19 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const segment = (children as any)?.props?.segment
+
   return (
     <html lang="fr" className="scroll-smooth">
-      <body className={`${inter.className} bg-white`}>
+      <head>
+        {/* Favicon */}
+        <link rel="icon" type="image/png" href="/images/logo/fav.png" />
+      </head>
+      <body className={inter.className}>
         <WaitlistProvider>
           <ClientProvider>
-            <Navbar />
-            <main className="min-h-screen">
-              {children}
-            </main>
-            <Footer />
+            {children}
+            {segment !== 'dashboard' && <Footer />}
           </ClientProvider>
         </WaitlistProvider>
       </body>
