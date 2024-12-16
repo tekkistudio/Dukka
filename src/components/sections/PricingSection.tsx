@@ -26,7 +26,7 @@ const plans = [
       'Notifications par SMS',
       'Mode Faible Connexion',
       'Formation de démarrage gratuite',
-      'Protection contre la fraude'
+      'Pas d\'assistant IA intégré'
     ],
     limitations: [
       'Analytics avancés non inclus',

@@ -64,7 +64,7 @@ export default function AboutPage() {
                 </span>
               </div>
               <p className="text-lg text-gray-600">
-              Dukka est née d'une observation fondamentale du commerce en Afrique : l'achat n'est pas qu'une simple transaction, c'est avant tout une conversation, un échange humain. Le problème est que l'e-commerce actuel, conçu selon les standards occidentaux, ignore complètement cette dimension culturelle. Notre vision est de transformer cette réalité culturelle en avantage compétitif grâce à la technologie.
+              Dukka est née d'une observation simple : en Afrique, l'achat n'est pas qu'une simple transaction, c'est avant tout une conversation, un échange humain. C'est par cette conversation que se construit la confiance, que s'échangent les informations sur les produits, et que se conclut la vente. Le problème est que l'e-commerce actuel, conçu selon les standards occidentaux, ignore complètement cette dimension culturelle. Notre vision est de transformer cette réalité culturelle en avantage compétitif grâce à la technologie.
               </p>
             </div>
 
@@ -75,7 +75,7 @@ export default function AboutPage() {
                 </span>
               </div>
               <p className="text-lg text-gray-600">
-              Notre mission est de réinventer  l'e-commerce pour l'adapter à la réalité africaine. Dukka permet aux commerçants et marques de créer des boutiques en ligne où l'expérience d'achat est conversationnelle, facilitée par un chatbot IA qui reproduit l'interaction naturelle d'un marché physique. Les solutions de paiement locales (Wave, Orange Money, etc.) sont intégrées et le paiement se fait naturellement dans le flux de la conversation.
+              Notre mission est de réinventer  l'e-commerce pour l'adapter à la réalité africaine. Dukka permet aux commerçants et marques de créer des boutiques en ligne où l'expérience d'achat est conversationnelle, facilitée par un chatbot IA qui reproduit l'interaction naturelle d'un marché physique. Les solutions de paiement locales (Wave, Orange Money, etc.) sont intégrées et le paiement se fait naturellement dans le flux de la conversation, comme dans une discussion sur WhatsApp.
               </p>
             </div>
           </div>
@@ -140,7 +140,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Rejoignez l'aventure</h2>
           <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
-            Ensemble, créons l'avenir du e-commerce en Afrique. Commencez votre voyage avec Dukka aujourd'hui.
+            Ensemble, créons l'avenir du e-commerce en Afrique.
           </p>
           
           <a
