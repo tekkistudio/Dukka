@@ -8,8 +8,8 @@ import Footer from '@/components/sections/footer/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Dukka - L\'e-commerce repensé pour l\'Afrique',
-  description: 'Dukka | La solution e-commerce adaptée à l\'Afrique',
+  title: 'Dukka - La Meilleure Alternative à Shopify en Afrique',
+  description: 'Dukka réinvente l\'e-commerce pour l\'adapter à la réalité africaine, en permettant aux commerçants et marques de créer des boutiques en ligne où la conversation est au cœur de l\'expérience d\'achat.',
 }
 
 export default function RootLayout({
