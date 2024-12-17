@@ -26,12 +26,12 @@ const plans = [
       'Notifications par SMS',
       'Mode Faible Connexion',
       'Formation de démarrage gratuite',
-      'Pas d\'assistant IA intégré'
+      'Protection contre la fraude'
     ],
     limitations: [
       'Analytics avancés non inclus',
       'Personnalisation limitée du chatbot',
-      'Support standard uniquement'
+      'Pas d\'assistant IA intégré'
     ],
     cta: {
       text: 'Rejoindre la liste d\'attente',
