@@ -17,7 +17,7 @@ const mainFeatures = [
   },
   {
     title: "Tous les paiements locaux intégrés",
-    description: "Acceptez les paiements comme vos clients aiment payer. Simple pour eux, simple pour vous.",
+    description: "Acceptez les modes de paiement que vos clients préfèrent. Simple pour eux, simple pour vous.",
     details: [
       "Wave, Orange Money, MTN Money intégrés",
       "Confirmation des paiements en temps réel",
@@ -58,7 +58,7 @@ const additionalFeatures = [
   {
     Icon: Headphones,
     title: 'Support local',
-    description: 'Une équipe qui vous comprend et parle votre langue. Disponible sur WhatsApp pour vous aider.'
+    description: 'Une équipe qui vous comprend et est continuellement à votre écoute. Disponible sur WhatsApp, Appel et SMS.'
   }
 ]
 
@@ -100,7 +100,7 @@ export default function FeaturesPage() {
               <div className="w-full lg:w-1/2">
         <div className="relative">
           <Image
-            src={`/images/features/${index === 0 ? 'chat-demo.svg' : index === 1 ? 'payment-demo.png' : 'interface-demo.svg'}`}
+            src={`/images/features/${index === 0 ? 'chat-demo.png' : index === 1 ? 'payment-demo.png' : 'interface-demo.png'}`}
             alt={feature.imageAlt}
             width={800}
             height={600}
@@ -147,7 +147,7 @@ export default function FeaturesPage() {
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-b from-white to-blue-50/50">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Prêt à transformer votre commerce ?</h2>
+          <h2 className="text-3xl font-bold mb-6">Prêt à transformer vos ventes en ligne ?</h2>
           <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
             Rejoignez les marques et commerçants qui boostent leurs ventes avec Dukka. 
           </p>

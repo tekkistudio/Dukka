@@ -76,7 +76,7 @@ export function FooterContent() {
             />
           </a>
           <p className="mt-4 text-gray-600 max-w-md">
-            L'e-commerce réinventé pour l'Afrique. Une solution conversationnelle 
+            Dukka réinvente l'expérience de vente et d'achat en ligne pour la rapprocher des pratiques culturelles africaines. Une solution conversationnelle 
             qui transforme chaque visite en opportunité de vente.
           </p>
           <div className="flex space-x-4 mt-6">

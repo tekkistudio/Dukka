@@ -12,7 +12,7 @@ const plans = [
     name: 'Tambali',
     nameTranslation: 'Démarrage',
     monthlyPrice: 9000,
-    yearlyPrice: 8100,
+    yearlyPrice: 7200,
     description: 'Idéal pour passer de WhatsApp/Instagram à une vraie boutique en ligne',
     trialPeriod: '1 mois gratuit',
     features: [
@@ -21,17 +21,13 @@ const plans = [
       'Chatbot standard',
       'Paiements mobile money basiques',
       'Support technique via WhatsApp',
+      '1 compte employé',
       'Interface en français',
       'Statistiques basiques',
       'Notifications par SMS',
       'Mode Faible Connexion',
       'Formation de démarrage gratuite',
       'Protection contre la fraude'
-    ],
-    limitations: [
-      'Analytics avancés non inclus',
-      'Personnalisation limitée du chatbot',
-      'Pas d\'assistant IA intégré'
     ],
     cta: {
       text: 'Rejoindre la liste d\'attente',
@@ -43,14 +39,15 @@ const plans = [
     name: 'Tekki',
     nameTranslation: 'Croissance',
     monthlyPrice: 12000,
-    yearlyPrice: 10800,
-    description: 'Pour les boutiques qui veulent automatiser leurs ventes et grandir',
+    yearlyPrice: 9600,
+    description: 'Pour les boutiques et marques qui veulent automatiser leurs ventes et grandir',
     trialPeriod: '2 mois gratuits',
     features: [
       'Tout de l\'offre Tambali',
       'Produits illimités',
       'Vendeur IA personnalisé',
       'Assistant IA intégré',
+      '3 comptes employés',
       'Tous les moyens de paiement',
       'Support prioritaire',
       'Analytics avancés',
@@ -74,16 +71,18 @@ const plans = [
     features: [
       'Tout de l\'offre Tekki',
       'Multi-boutiques',
+      '10 comptes employés',
       'Vendeur IA sur mesure',
-      'API dédiée',
       'Account manager dédié',
       'Formation équipe complète',
       'Intégrations personnalisées',
+      'Intégration Langues locales',
+      'Connexion API Logistique',
       'Support premium garanti 24/7',
       'Statistiques personnalisées',
       'Déploiement dédié'
     ],
-    startingAt: 'À partir de 50 000 FCFA/mois',
+    startingAt: 'À partir de 70 000 FCFA/mois',
     cta: {
       text: 'Nous contacter',
       action: 'contact'
@@ -200,23 +199,6 @@ function PricingCard({ plan, isYearly, index }: any) {
             <span className="text-sm">{feature}</span>
           </motion.li>
         ))}
-        
-        {/* Limitations */}
-        {plan.limitations && (
-          <div className="mt-6 pt-6 border-t border-gray-200/20">
-            {plan.limitations.map((limitation: string, i: number) => (
-              <motion.li
-                key={`limitation-${i}`}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                transition={{ delay: (index * 0.2) + 0.4 + (i * 0.1) }}
-                className="flex items-start gap-3 text-gray-500 mt-3"
-              >
-                <span className="text-sm">• {limitation}</span>
-              </motion.li>
-            ))}
-          </div>
-        )}
       </ul>
 
       {/* CTA Button */}
@@ -287,14 +269,18 @@ export function PricingSection() {
                 style={{ width: 'calc(50% - 4px)', left: '4px' }}
               />
             </div>
-            <div className="ml-3">
-              <motion.span 
-                className="inline-flex items-center gap-1.5 bg-green-100 text-green-700 text-sm px-3 py-1 rounded-full"
-                animate={{ scale: isYearly ? 1 : 0.8, opacity: isYearly ? 1 : 0.5 }}
-              >
-                <span className="font-medium">Économisez 10%</span>
-              </motion.span>
-            </div>
+            {isYearly && (
+              <div className="ml-3">
+                <motion.span 
+                  className="inline-flex items-center gap-1.5 bg-green-100 text-green-700 text-sm px-3 py-1 rounded-full"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <span className="font-medium">Économisez 20%</span>
+                </motion.span>
+              </div>
+            )}
           </div>
         </div>
 

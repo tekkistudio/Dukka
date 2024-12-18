@@ -38,7 +38,7 @@ const DashboardPage = () => {
    <div className="min-h-screen bg-gray-50 flex">
      {/* Mobile Menu Button */}
      <button 
-       className="md:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg"
+       className="md:hidden fixed top-4 right-4 z-50 p-2 bg-white rounded-lg shadow-lg"
        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
      >
        {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -51,7 +51,9 @@ const DashboardPage = () => {
             md:translate-x-0 transition-transform duration-200`}
      >
        <div className="p-4 border-b">
+       <a href="/">
          <img src="/images/logo/logo_black.svg" alt="Dukka" className="h-10" />
+       </a>
        </div>
        
        <nav className="p-4">

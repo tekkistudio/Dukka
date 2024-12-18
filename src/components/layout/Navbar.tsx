@@ -13,17 +13,18 @@ const navigation = [
   { name: 'À propos', href: '/a-propos' },
 ]
 
-export function Navbar() {
+interface NavbarProps {
+  showAnnouncement: boolean
+}
+
+export function Navbar({ showAnnouncement }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [hasScrolled, setHasScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
+  const isHome = pathname === '/'
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY
-      setHasScrolled(scrollPosition > 50)
-    }
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -33,23 +34,26 @@ export function Navbar() {
   }, [pathname])
 
   useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''
   }, [mobileMenuOpen])
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-[100] transition-all duration-300 ${
-        hasScrolled ? 'bg-white shadow-sm' : 'bg-white'
+    <header 
+      className={`fixed left-0 right-0 z-40 transition-all duration-200 ${
+        showAnnouncement ? 'top-8' : 'top-0'
       }`}
     >
-      <nav className="container mx-auto py-4 lg:py-6">
+      {/* Background overlay */}
+      <div 
+        className="absolute inset-0 transition-opacity duration-200"
+        style={{ 
+          backgroundColor: 'white',
+          opacity: isScrolled || !isHome ? 0.95 : 0,
+          boxShadow: isScrolled ? '0 1px 3px 0 rgb(0 0 0 / 0.1)' : 'none'
+        }}
+      />
+
+      <nav className="container mx-auto py-4 relative">
         <div className="flex items-center justify-between px-4 lg:px-8">
           {/* Logo */}
           <div className="flex flex-1">
@@ -67,23 +71,19 @@ export function Navbar() {
 
           {/* Desktop navigation */}
           <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => {
-              const isActive = pathname === item.href
-              return (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={`text-base font-medium leading-6 transition-colors ${
-                    isActive 
-                      ? 'text-dukka-primary'
-                      : 'text-gray-700 hover:text-dukka-primary'
-                  }`}
-                  aria-current={isActive ? 'page' : undefined}
-                >
-                  {item.name}
-                </a>
-              )
-            })}
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className={`text-base font-medium transition-colors ${
+                  pathname === item.href
+                    ? 'text-dukka-primary'
+                    : 'text-black hover:text-dukka-primary'
+                }`}
+              >
+                {item.name}
+              </a>
+            ))}
           </div>
 
           {/* Desktop CTA */}
@@ -95,7 +95,7 @@ export function Navbar() {
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-900"
               onClick={() => setMobileMenuOpen(true)}
               aria-expanded={mobileMenuOpen}
               aria-label="Menu principal"
@@ -106,22 +106,19 @@ export function Navbar() {
         </div>
       </nav>
 
+      {/* Mobile menu overlay */}
+      {mobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-[60]"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Mobile menu */}
       <div 
-        className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-300 ${
-          mobileMenuOpen ? 'opacity-100 z-[110]' : 'opacity-0 pointer-events-none'
+        className={`fixed right-0 top-0 bottom-0 w-full max-w-sm bg-white transition-transform duration-300 ease-out z-[70] ${
+          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
-        onClick={() => setMobileMenuOpen(false)}
-      />
-
-      <div 
-        className={`fixed right-0 top-0 bottom-0 w-full max-w-sm bg-white transition-transform duration-300 ease-out z-[120]`}
-        style={{
-          transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(100vw)',
-          position: mobileMenuOpen ? 'fixed' : 'absolute',
-          visibility: mobileMenuOpen ? 'visible' : 'hidden',
-          boxShadow: mobileMenuOpen ? '0 25px 50px -12px rgb(0 0 0 / 0.25)' : 'none'
-        }}
       >
         <div className="flex items-center justify-between px-6 py-4 border-b">
           <a href="/" className="-m-1.5 p-1.5">
@@ -136,7 +133,7 @@ export function Navbar() {
           </a>
           <button
             type="button"
-            className="-m-2.5 rounded-md p-2.5 text-gray-700"
+            className="-m-2.5 rounded-md p-2.5 text-gray-900"
             onClick={() => setMobileMenuOpen(false)}
             aria-label="Fermer le menu"
           >
@@ -146,23 +143,19 @@ export function Navbar() {
 
         <div className="px-6 py-6">
           <div className="space-y-1">
-            {navigation.map((item) => {
-              const isActive = pathname === item.href
-              return (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
-                    isActive
-                      ? 'bg-dukka-primary/10 text-dukka-primary'
-                      : 'text-gray-700 hover:bg-gray-50 hover:text-dukka-primary'
-                  }`}
-                  aria-current={isActive ? 'page' : undefined}
-                >
-                  {item.name}
-                </a>
-              )
-            })}
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
+                  pathname === item.href
+                    ? 'bg-dukka-primary/10 text-dukka-primary'
+                    : 'text-gray-900 hover:bg-gray-50 hover:text-dukka-primary'
+                }`}
+              >
+                {item.name}
+              </a>
+            ))}
           </div>
           <div className="mt-8">
             <WaitlistButton className="w-full justify-center" />

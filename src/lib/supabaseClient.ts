@@ -14,15 +14,18 @@ export const supabase = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   {
     auth: {
-      persistSession: true
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true
+    },
+    global: {
+      headers: {
+        'X-Client-Info': 'dukka-web',
+        'Content-Type': 'application/json',
+      },
     },
     db: {
       schema: 'public'
     },
-    global: {
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8'
-      }
-    }
   }
 )

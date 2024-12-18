@@ -2,7 +2,7 @@ export const waitlistChat = {
     initial: [
       {
         type: 'assistant',
-        content: "👋 Bonjour ! Je suis Moïse, votre assistant Dukka. Nous sommes ravis de votre intérêt pour notre solution e-commerce conversationnelle pour l'Afrique. Je vais vous guider pour rejoindre notre liste d'attente. Pouvons-nous commencer ?"
+        content: "👋 Bonjour ! Je suis l'Assistant Dukka. Nous sommes ravis de votre intérêt pour notre solution e-commerce conversationnelle pour l'Afrique. Je vais vous guider pour rejoindre notre liste d'attente. Pouvons-nous commencer ?"
       },
       {
         type: 'user-choices',
@@ -33,7 +33,7 @@ export const waitlistChat = {
       persuasion: [
         {
           type: 'assistant',
-          content: "Je comprends votre hésitation. Cependant, en faisant partie de nos premiers utilisateurs, vous bénéficierez :\n\n• D'un accès prioritaire à la plateforme\n• De 2 mois d'essai offerts\n• D'un accès à notre communauté d'e-commerçants africains.\n• D'une invitation à notre cérémonie de lancement\n\nÊtes-vous sûr(e) de vouloir manquer tout cela ?"
+          content: "Je comprends votre hésitation. Cependant, en faisant partie de nos premiers utilisateurs, vous bénéficierez :\n\n• D'un accès prioritaire à la plateforme\n• De 30 jours d'essai offerts\n• D'un accès à notre communauté d'e-commerçants en Afrique.\n• D'une invitation à notre cérémonie de lancement\n\nÊtes-vous sûr(e) de vouloir manquer tout cela ?"
         },
         {
           type: 'user-choices',
@@ -45,7 +45,7 @@ export const waitlistChat = {
     questions: [
       {
         id: 'full_name',
-        question: "Pour commencer, quel est votre nom complet ?",
+        question: "Excellent ! Pour commencer, quel est votre nom complet ?",
         type: 'text'
       },
       {
@@ -57,7 +57,7 @@ export const waitlistChat = {
           "Business E-commerce",
           "Dropshipping",
           "Produits digitaux",
-          "Autre"
+          "Aucun, pour le moment"
         ]
       },
       {

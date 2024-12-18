@@ -12,6 +12,8 @@ import {
   AVAILABLE_POSITIONS 
 } from './data/contact_data';
 
+type VisitorType = 'e-commerçant(e)' | 'commerçant(e)' | 'marque' | 'média' | 'équipe' | 'autre';
+
 interface ContactFormData {
   fullName: string;
   email: string;
@@ -190,17 +192,31 @@ export function ContactChat() {
 
   // Gestion des profils
   const handleProfileSelection = async (profile: string) => {
-    let visitorType = profile;
-    if (profile === "Je suis e-commerçant(e)") visitorType = "e-commerçant(e)";
-    if (profile === "Je suis commerçant(e)") visitorType = "commerçant(e)";
-    if (profile === "Je représente une marque") visitorType = "marque";
-    if (profile === "Je suis journaliste/média") visitorType = "média";
-    if (profile === "Je veux rejoindre l'équipe") visitorType = "équipe";
-    if (profile === "Autre") visitorType = "autre";
+    let visitorType: VisitorType;
+    
+    switch(profile) {
+      case "Je suis e-commerçant(e)":
+        visitorType = "e-commerçant(e)";
+        break;
+      case "Je suis commerçant(e)":
+        visitorType = "commerçant(e)";
+        break;
+      case "Je représente une marque":
+        visitorType = "marque";
+        break;
+      case "Je suis journaliste/média":
+        visitorType = "média";
+        break;
+      case "Je veux rejoindre Dukka":
+        visitorType = "équipe";
+        break;
+      default:
+        visitorType = "autre";
+    }
   
     setFormData(prev => ({ ...prev, visitorType }));
     await addMessage(profile);
-
+  
     if (visitorType === "équipe") {
       await addBotResponse(
         ["C'est bien noté ! Comment puis-je vous aider ?"],
@@ -212,7 +228,7 @@ export function ContactChat() {
       );
     } else {
       await addBotResponse(
-        ["C'est bien noté ! Comment puis-je vous aider ?"],
+        [PERSONALIZED_PRESENTATIONS[visitorType], "Que puis-je faire d'autre pour vous ?"],
         ["Je veux en savoir plus sur Dukka", "Je veux contacter l'équipe"]
       );
     }
@@ -223,11 +239,18 @@ export function ContactChat() {
     switch(choice) {
       case "Je veux en savoir plus sur Dukka":
         await addMessage(choice);
+        if (formData.visitorType) {
         await addBotResponse(
-          [PERSONALIZED_PRESENTATIONS["équipe"]],
-          ["Je veux voir les postes disponibles", "Je veux contacter l'équipe"]
+          [PERSONALIZED_PRESENTATIONS[formData.visitorType as VisitorType], "Que puis-je faire d'autre pour vous ?"],
+          ["Je veux contacter l'équipe", "Je veux rejoindre la liste d'attente"]
         );
-        break;
+      } else {
+        await addBotResponse(
+      [PERSONALIZED_PRESENTATIONS["autre"], "Que puis-je faire d'autre pour vous ?"],
+      ["Je veux contacter l'équipe", "Je veux rejoindre la liste d'attente"]
+    );
+  }
+  break;
 
       case "Je veux voir les postes disponibles":
         await addMessage(choice);
@@ -422,7 +445,7 @@ export function ContactChat() {
             transition={{ duration: 2, repeat: Infinity }}
           />
           <span className="text-sm text-gray-600">
-            Moïse est en ligne
+            L'Assistant Dukka est en ligne
           </span>
         </div>
       </div>
@@ -467,7 +490,7 @@ export function ContactChat() {
               <ChatMessage
                 message={message}
                 isBot={message.type === 'assistant'}
-                scenario={{ chatbotName: 'Moïse', id: 'contact' }}
+                scenario={{ chatbotName: 'Dukka', id: 'contact' }}
                 animate={false}
                 showTimestamp={true}
               />

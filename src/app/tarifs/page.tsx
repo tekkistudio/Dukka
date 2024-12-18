@@ -11,27 +11,22 @@ const plans = [
     name: 'Tambali',
     nameTranslation: 'Démarrage',
     monthlyPrice: 9000,
-    yearlyPrice: 8100,
+    yearlyPrice: 7200,
     description: 'La solution idéale pour passer de WhatsApp/Instagram à une vraie boutique en ligne',
     trialPeriod: '1 mois gratuit',
     features: [
       '1 boutique en ligne',
       'Jusqu\'à 50 produits',
       'Chatbot standard',
-      'Templates de messages pour le chatbot',
       'Paiements mobile money basiques',
       'Support technique via WhatsApp',
+      '1 compte employé',
       'Interface en français',
       'Statistiques basiques',
       'Notifications par SMS',
-      'Mode hors-ligne',
+      'Mode Faible Connexion',
       'Formation de démarrage gratuite',
       'Protection contre la fraude'
-    ],
-    limitations: [
-      'Analytics avancés non inclus',
-      'Personnalisation limitée du chatbot',
-      'Pas d\'assistant IA intégré'
     ],
     cta: {
       text: 'Rejoindre la liste d\'attente',
@@ -43,7 +38,7 @@ const plans = [
     name: 'Tekki',
     nameTranslation: 'Croissance',
     monthlyPrice: 12000,
-    yearlyPrice: 10800,
+    yearlyPrice: 9600,
     description: 'Pour les boutiques qui veulent automatiser leurs ventes et grandir',
     trialPeriod: '2 mois gratuits',
     features: [
@@ -51,6 +46,7 @@ const plans = [
       'Produits illimités',
       'Vendeur IA personnalisé',
       'Assistant IA intégré',
+      '3 comptes employés',
       'Tous les moyens de paiement',
       'Support prioritaire',
       'Analytics avancés',
@@ -74,16 +70,18 @@ const plans = [
     features: [
       'Tout de l\'offre Tekki',
       'Multi-boutiques',
+      '10 comptes employés',
       'Vendeur IA sur mesure',
-      'API dédiée',
       'Account manager dédié',
       'Formation équipe complète',
       'Intégrations personnalisées',
+      'Intégration Langues locales',
+      'Connexion API Logistique',
       'Support premium garanti 24/7',
       'Statistiques personnalisées',
       'Déploiement dédié'
     ],
-    startingAt: 'À partir de 50 000 FCFA/mois',
+    startingAt: 'À partir de 70 000 FCFA/mois',
     cta: {
       text: 'Nous contacter',
       action: 'contact'
@@ -165,11 +163,13 @@ export default function PricingPage() {
                 style={{ width: 'calc(50% - 4px)', left: '4px' }}
               />
             </div>
-            <div className="ml-3">
-              <span className="inline-flex items-center gap-1.5 bg-green-100 text-green-700 text-sm px-3 py-1 rounded-full">
-                <span className="font-medium">Économisez 10%</span>
-              </span>
-            </div>
+            {isYearly && (
+              <div className="ml-3">
+                <span className="inline-flex items-center gap-1.5 bg-green-100 text-green-700 text-sm px-3 py-1 rounded-full">
+                  <span className="font-medium">Économisez 20%</span>
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Pricing Cards */}
@@ -240,16 +240,6 @@ export default function PricingPage() {
                       <span className="text-sm">{feature}</span>
                     </div>
                   ))}
-
-                  {plan.limitations && (
-                    <div className="pt-4 mt-4 border-t border-gray-200">
-                      {plan.limitations.map((limitation, i) => (
-                        <div key={i} className="flex items-start gap-3 text-gray-500">
-                          <span className="text-sm">• {limitation}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
                 </div>
 
                 <button

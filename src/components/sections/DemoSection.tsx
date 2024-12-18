@@ -50,7 +50,7 @@ const features = [
   {
     icon: Banknote,
     title: 'Paiement mobile',
-    description: 'Intégration native des solutions de paiement africaines (Wave, OM, etc.)'
+    description: 'Intégration des modes de paiement que vos clients préfèrent (Wave, OM, etc.)'
   }
 ]
 

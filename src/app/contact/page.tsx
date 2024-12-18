@@ -17,8 +17,8 @@ const contactInfo = [
     icon: Mail,
     title: 'Email',
     details: [
-      'support@dukka.com',
-      'contact@dukka.com'
+      'support@getdukka.com',
+      'contact@getdukka.com'
     ]
   },
   {

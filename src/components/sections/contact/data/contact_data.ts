@@ -3,7 +3,7 @@
 export const INITIAL_MESSAGES = [
     {
       type: 'assistant',
-      content: "Bonjour 👋 Je suis Moïse, l'assistant de Dukka. Pour mieux répondre à votre besoin, pouvez-vous me dire quel est votre profil ?"
+      content: "Bonjour 👋 Je suis l'Assistant Dukka. Pour mieux répondre à votre besoin, pouvez-vous me dire quel est votre profil ?"
     },
     {
       type: 'user-choices',

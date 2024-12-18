@@ -12,7 +12,7 @@ export default function WaitlistChat({ onClose }: WaitlistChatProps) {
   const [messages, setMessages] = React.useState<Message[]>([
     {
       type: 'assistant',
-      content: "👋 Bonjour ! Je suis Moïse, votre assistant Dukka. Nous sommes ravis de votre intérêt pour notre solution e-commerce conversationnelle pour l'Afrique. Je vais vous guider pour rejoindre notre liste d'attente. Pouvons-nous commencer ?"
+      content: "👋 Bonjour ! Je suis l'Assistant Dukka. Nous sommes ravis de votre intérêt pour notre solution e-commerce conversationnelle pour l'Afrique. Je vais vous guider pour rejoindre notre liste d'attente. Pouvons-nous commencer ?"
     },
     {
       type: 'user-choices',
@@ -90,7 +90,7 @@ export default function WaitlistChat({ onClose }: WaitlistChatProps) {
           break
           
         default:
-          if (choice && currentStep === 2) { // business_type
+          if (choice && currentStep === 2) { 
             setUserData(prev => ({ ...prev, business_type: choice }))
             await handleNextStep()
           }
@@ -107,7 +107,7 @@ export default function WaitlistChat({ onClose }: WaitlistChatProps) {
   const handleUnexpectedMessage = async (): Promise<void> => {
     await addMessage({
       type: 'assistant',
-      content: "Désolé ! Je suis uniquement là pour vous aider à rejoindre notre liste d'attente. Je ne peux pas répondre à d'autres questions pour le moment. Souhaitez-vous poursuivre votre inscription ?"
+      content: "Désolé ! Mon seul rôle est de vous aider à rejoindre notre liste d'attente. Je ne peux pas répondre à d'autres questions pour le moment. Souhaitez-vous poursuivre votre inscription ?"
     })
     await addMessage({
       type: 'user-choices',
@@ -140,7 +140,7 @@ export default function WaitlistChat({ onClose }: WaitlistChatProps) {
           if (!text.includes('@')) {
             await addMessage({
               type: 'assistant',
-              content: "Cette adresse email ne semble pas valide. Pouvez-vous vérifier ?"
+              content: "Cette adresse email ne semble pas valide. Pouvez-vous la vérifier ?"
             })
             return
           }
@@ -170,24 +170,29 @@ export default function WaitlistChat({ onClose }: WaitlistChatProps) {
           ...userData,
           created_at: new Date().toISOString()
         }
-
+  
         const { error } = await supabase
           .from('waitlist')
           .insert([finalUserData])
-
+  
         if (error) {
           console.error('Waitlist save error:', error)
           throw error
         }
-
+  
         await addMessage({
           type: 'assistant',
           content: waitlistChat.success.message({ name: userData.full_name })
         })
         await addMessage({
           type: 'user-choices',
-          content: [waitlistChat.success.action]
+          content: ['Fermer']
         })
+  
+        // Ajoutez un délai avant de fermer automatiquement
+        setTimeout(() => {
+          onClose()
+        }, 3000)
         return
       }
 
@@ -233,7 +238,7 @@ export default function WaitlistChat({ onClose }: WaitlistChatProps) {
               transition={{ duration: 2, repeat: Infinity }}
             />
             <span className="text-sm text-gray-600" id="waitlist-dialog-title">
-              Moïse est en ligne
+              L'Assitant Dukka est en ligne
             </span>
           </div>
           <button 
@@ -281,7 +286,7 @@ export default function WaitlistChat({ onClose }: WaitlistChatProps) {
                 >
                   {message.type === 'assistant' && (
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="font-medium text-sm text-gray-800">Moïse</span>
+                      <span className="font-medium text-sm text-gray-800">Dukka</span>
                       <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Assistant</span>
                     </div>
                   )}
